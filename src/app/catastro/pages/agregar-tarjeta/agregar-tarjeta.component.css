@@ -1,0 +1,17 @@
+.iframe{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.titulo{
+  width: 90%;
+  margin: 0 auto;
+  color: #01579B;
+  text-align: center;
+  margin-top:50px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px #01579B;
+}
+.titulo__agregarnuevatarjeta{
+  font-weight: 500;
+}

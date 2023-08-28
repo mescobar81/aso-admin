@@ -1,0 +1,71 @@
+<!-- <div class="menu">
+<a mat-raised-button [matMenuTriggerFor]="animals">Catastrar</a>
+<mat-menu #animals="matMenu">
+  <button mat-menu-item color="warn" routerLink="/menu/agregar-tarjeta">Agregar Tarjeta</button>
+  <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>
+
+<mat-menu #invertebrates="matMenu">
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+
+</div> -->
+
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{width: '250px'}">
+    <mat-toolbar color="primary">
+      <span>Menú</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item
+      *ngFor="let item of menuItems"
+      
+      >
+      <div style="display: flex; align-items: center;" *ngFor="let subItem of item.subLabel">
+        <!-- {{item.label}} -->
+          <a [matMenuTriggerFor]="animals">{{item.label}}</a>
+          <mat-menu #animals="matMenu"
+          >
+            <button mat-menu-item color="warn" 
+            [routerLink]="subItem.url"
+            (click)="sidenav.toggle()"
+            >
+            <mat-icon matListItemIcon>{{subItem.icon}}</mat-icon>
+            {{subItem.name}}
+          </button>
+          </mat-menu>
+
+      </div>
+          
+      </mat-list-item>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <h2>{{usuario?.nombre}}</h2>
+    <a class="toolbar__btn toolbar__btn--cerrarsesion" routerLink="/auth/login" mat-button>Cerrar Sesión</a>
+  </mat-toolbar>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
