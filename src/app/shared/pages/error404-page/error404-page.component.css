@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.container__titles{
+    font-size:50px;
+    color: #1a227eb0;
+}
+.container__titles--active{
+    font-size: 40px;
+}
+.container__img{
+    width: 380px;
+}

@@ -83,9 +83,4 @@ export class LoginPageComponent {
       })
     });
   }
-
-  logout(){
-    this.authService.logout();
-    //this.router.navigateByUrl('/auth/login');
-  }
 }

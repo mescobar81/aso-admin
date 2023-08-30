@@ -49,16 +49,15 @@ export class AuthService {
   }
 
   chequearAutenticacionUsuario():Observable<boolean> {
-
-    const usuario:Usuario = JSON.parse(localStorage.getItem('usuario') || '');
-    this.usuario!.usuario = usuario;
-
-    if(!this.usuario.usuario){
-      
+    const existeUsuario = localStorage.getItem('usuario') || null;
+    if(!existeUsuario){
       return of(false);
+    }else{
+      const usuario:Usuario = JSON.parse(localStorage.getItem('usuario') || '') || {};
+      this.usuario!.usuario = usuario;
+      return of(true);
     }
-
-    return of(true);
+  
   }
 
   logout():void{

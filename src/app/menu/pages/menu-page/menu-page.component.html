@@ -62,8 +62,11 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span class="spacer"></span>
-    <h2>{{usuario?.nombre}}</h2>
-    <a class="toolbar__btn toolbar__btn--cerrarsesion" routerLink="/auth/login" mat-button>Cerrar Sesión</a>
+    <h4 class="toolbar__nombre">{{usuario?.nombre}}</h4>
+    <a mat-button
+        class="toolbar__btn toolbar__btn--cerrarsesion"
+        (click)="logout()"
+    >Cerrar Sesión</a>
   </mat-toolbar>
   <div class="container">
     <router-outlet></router-outlet>

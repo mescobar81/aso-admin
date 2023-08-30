@@ -6,6 +6,7 @@ import { CatastroPageComponent } from './pages/catastro-page/catastro-page.compo
 import { AgregarTarjetaComponent } from './pages/agregar-tarjeta/agregar-tarjeta.component';
 import { MaterialModule } from '../material/material.module';
 import { ViewTarjetaComponent } from './pages/view-tarjeta/view-tarjeta.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ViewTarjetaComponent } from './pages/view-tarjeta/view-tarjeta.componen
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     CatastroRoutingModule,
     MaterialModule
   ]

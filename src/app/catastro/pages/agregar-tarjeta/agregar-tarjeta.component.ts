@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CatastroService } from '../../services/catastro.service';
 
 declare var Bancard:any;
 
@@ -15,40 +16,38 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './agregar-tarjeta.component.html',
   styleUrls: ['./agregar-tarjeta.component.css']
 })
-export class AgregarTarjetaComponent implements OnInit {
+export class AgregarTarjetaComponent {
 
   displayedColumns: string[] = ['name', 'accion'];
 
-  
   dataSource = [...ELEMENT_DATA];
     addData(){}
     removeData(){}
-  constructor() { }
+
+  constructor(private catastroService:CatastroService) { }
 
   ngAfterViewInit(): void {
-    var styles = {
-      'input-background-color' : '#453454',
-      'input-text-color': '#B22222',
-      'input-border-color' : '#CCCCCC',
-      'input-placeholder-color' : '#999999',
-      'button-background-color' : '#5CB85C',
-      'button-text-color' : '#FFFFFF',
-      'button-border-color' : '#4CAE4C',
-      'form-background-color' : '#999999',
-      'form-border-color' : '#DDDDDD',
-      'header-background-color' : '#F5F5F5',
-      'header-text-color' : '#333333',
-      'hr-border-color' : '#B22222'
-    };
-
-    const opctions = {
-      styles: styles
-    }
-    console.log('proccessid');
-    Bancard.Cards.createForm('iframe-container', 'V3aeqBmb7.70L76Q_*DK',
-      opctions.styles);
-  }
-
-  ngOnInit(): void {
+    this.catastroService.catastrarTarjeta(114).subscribe(resp => {
+      console.log(resp);
+      var styles = {
+        'input-background-color' : '#453454',
+        'input-text-color': '#B22222',
+        'input-border-color' : '#CCCCCC',
+        'input-placeholder-color' : '#999999',
+        'button-background-color' : '#5CB85C',
+        'button-text-color' : '#FFFFFF',
+        'button-border-color' : '#4CAE4C',
+        'form-background-color' : '#999999',
+        'form-border-color' : '#DDDDDD',
+        'header-background-color' : '#F5F5F5',
+        'header-text-color' : '#333333',
+        'hr-border-color' : '#B22222'
+      };
+  
+      console.log('Process_id:', resp.process_id);
+      
+      Bancard.Cards.createForm('iframe-container', `${resp.process_id}`,
+        styles);
+    });
   }
 }

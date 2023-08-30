@@ -1,4 +1,13 @@
 
 .toolbar__btn--cerrarsesion:hover{
-    background-color: #097ad1c2;
+    background-color: #f5f5f54e;
+}
+
+.toolbar__btn{
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.toolbar__nombre{
+    font-size: 12px
 }

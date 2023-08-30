@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ILogin } from 'src/app/auth/interfaces/login.interfaces';
+import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -31,11 +32,16 @@ export class MenuPageComponent implements OnInit {
     return this.authService.getUser;
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private router:Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     console.log(this.usuario);
     
   }
 
+  logout(){
+    this.authService.logout();
+    this.router.navigateByUrl('/auth/login');
+  }
 }
