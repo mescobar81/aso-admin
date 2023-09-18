@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './menu-page.component.html',
   styleUrls: ['./menu-page.component.css']
 })
-export class MenuPageComponent implements OnInit {
+export class MenuPageComponent {
 
   menuItems = [
     {
@@ -34,11 +34,6 @@ export class MenuPageComponent implements OnInit {
 
   constructor(private router:Router,
               private authService: AuthService) { }
-
-  ngOnInit(): void {
-    console.log(this.usuario);
-    
-  }
 
   logout(){
     this.authService.logout();

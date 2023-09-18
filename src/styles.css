@@ -9,14 +9,17 @@
 }
 
 body {
-
     font-family: 'Poppins';
+
+    /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
+    background-repeat: no-repeat;
+    /* background-color: #023d8a79; */
     font-weight: 400;
-    /* background-image: url('./assets/fondo.png'); */
+    /*
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 200px;
-    background-size: 800px;
+    background-size: 800px; */
 }
 
 .spacer {
@@ -24,20 +27,20 @@ body {
 }
 
 
-@media (max-width: 575.98px) {
+@media (max-width: 575px) {
+    
     body {
-        font-family: 'Roboto';
-        font-weight: 300;
-        background-image: url('./assets/fondo.png');
+        /*background-image: url('./assets/fondo.png');
         background-repeat: no-repeat;
         background-position: center;
         background-position-y: 300px;
-        background-size: 400px;
+        background-size: 400px; */
     }
+
 }
 
-@media (max-width: 767.98px) {}
+@media (max-width: 767px) {}
 
-@media (max-width: 991.98px) {}
+@media (max-width: 991px) {}
 
-@media (max-width: 1199.98px) {}
+@media (max-width: 1199px) {}

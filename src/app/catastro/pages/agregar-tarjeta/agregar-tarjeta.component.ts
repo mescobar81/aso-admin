@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CatastroService } from '../../services/catastro.service';
 
+import { Usuario } from 'src/app/auth/interfaces/login.interfaces';
+
 declare var Bancard:any;
 
 export interface PeriodicElement {
   name: string;
   accion:string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {name: '627431695847785', accion: 'eliminar'}
-];
+const ELEMENT_DATA: PeriodicElement[] = [];
 
 @Component({
   selector: 'app-agregar-tarjeta',
@@ -21,13 +21,17 @@ export class AgregarTarjetaComponent {
   displayedColumns: string[] = ['name', 'accion'];
 
   dataSource = [...ELEMENT_DATA];
-    addData(){}
-    removeData(){}
 
   constructor(private catastroService:CatastroService) { }
 
   ngAfterViewInit(): void {
-    this.catastroService.catastrarTarjeta(114).subscribe(resp => {
+    const existeUsuario = localStorage.getItem('usuario') || '';
+    if(!existeUsuario){
+      return;
+    }
+
+    const usuario:Usuario = JSON.parse(localStorage.getItem('usuario') || '') || null;
+    this.catastroService.catastrarTarjeta(Number(usuario.nroSocio)).subscribe(resp => {
       console.log(resp);
       var styles = {
         'input-background-color' : '#453454',
@@ -44,10 +48,12 @@ export class AgregarTarjetaComponent {
         'hr-border-color' : '#B22222'
       };
   
-      console.log('Process_id:', resp.process_id);
-      
+      console.log('Process_id:', resp);
+
       Bancard.Cards.createForm('iframe-container', `${resp.process_id}`,
-        styles);
+      styles);
+    }, (err) => {
+      console.log(err);
     });
   }
 }

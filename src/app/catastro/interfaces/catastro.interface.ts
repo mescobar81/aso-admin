@@ -4,3 +4,14 @@ export interface ICatastroTarjeta {
     mensaje:     string;
     status:      string;
 }
+
+export interface ITarjetaRecuperada {
+    tarjetas: any[];
+    mensaje:  string;
+    status:   string;
+}
+
+export interface ITarjetaEliminada {
+    mensaje: string;
+    status:  string;
+}

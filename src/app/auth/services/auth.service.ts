@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import {tap, Observable, of} from 'rxjs';
 
 import { ICredencial } from '../interfaces/credencial.interfaces';
-import { ILogin, Usuario } from '../interfaces/login.interfaces';
+import { IDatoAdicionalUsuario, ILogin, Usuario } from '../interfaces/login.interfaces';
 
 const BASE_URL = environment.baseUrl;
 @Injectable({
@@ -15,7 +15,18 @@ export class AuthService {
   private usuario:ILogin= {
     parametrosGlobales:{},
     recordarSesion:false,
-    usuario:{}
+    usuario:{
+      Correo:'',
+      Celular:'',
+      nroSocio:'',
+      valido:false,
+      documento:0,
+      mensaje:'',
+      nombre:'',
+      solicitarNuevoPass:'',
+      codaso:'',
+      status:''
+    }
   };
 
   constructor(private http:HttpClient) { }
@@ -27,22 +38,18 @@ export class AuthService {
     }
     return this.usuario.usuario;
   }
- /*  login(credencial:ICredencial):Promise<ILogin>{
 
-    return new Promise<ILogin>((resolve, reject) => {
-      this.http.post<ILogin>(`${BASE_URL}/loginPost`, credencial).subscribe((resp: ILogin) => {
-        resolve(resp);
-      },
-        (err: any) => {
-          console.log(err);
-          resolve(err);
-        });
-    });
-  } */
-
-  login(credencial:ICredencial):Observable<ILogin>{
+  /* login(credencial:ICredencial):Observable<ILogin>{
 
       return this.http.post<ILogin>(`${BASE_URL}/loginPost`, credencial).pipe(
+      tap((resp:ILogin) => this.usuario = resp),
+      tap((resp:ILogin) => localStorage.setItem('usuario', JSON.stringify(resp.usuario)))
+    );
+  } */
+
+    login(credencial:ICredencial):Observable<ILogin>{
+
+      return this.http.post<ILogin>(`${BASE_URL}/loginWPost`, credencial).pipe(
       tap((resp:ILogin) => this.usuario = resp),
       tap((resp:ILogin) => localStorage.setItem('usuario', JSON.stringify(resp.usuario)))
     );
@@ -60,6 +67,17 @@ export class AuthService {
   
   }
 
+  actualizarDatoAdicionalUsuario(params:{
+    nroSocio:string,
+    Correo:string,
+    Celular:string
+  }):Observable<IDatoAdicionalUsuario>{
+    return this.http.post<IDatoAdicionalUsuario>(`${BASE_URL}/actualizaDatos`, params)
+    .pipe(
+      tap(resp => console.log(resp)),
+      tap(resp => of(resp))
+    )
+  }
   logout():void{
     localStorage.clear();
   }
