@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
 import { MensajeModalComponent } from './components/mensaje-modal/mensaje-modal.component';
 import { MaterialModule } from '../material/material.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,6 +14,7 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MaterialModule
   ],
   exports: [

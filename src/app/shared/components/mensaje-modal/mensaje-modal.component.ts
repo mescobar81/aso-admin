@@ -15,10 +15,6 @@ export class MensajeModalComponent {
   ngAfterViewInit() {
     this.route.queryParams.subscribe(params => {
       const {status, description} = params;
-      console.log(status);
-      console.log(description);
-      
-      
       if(status === 'add_new_card_success'){
         Swal.fire({
           icon: 'success',
