@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://sysasotigo.com/WSAsoTigo2/webresources'
+  baseUrl: 'http://hanadesys.com/WSAsoTigo2/webresources'
 };
 
 /*

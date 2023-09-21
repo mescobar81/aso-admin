@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://sysasotigo.com/WSAsoTigo2/webresources'
+  baseUrl: 'http://hanadesys.com/WSAsoTigo2/webresources'
 };
