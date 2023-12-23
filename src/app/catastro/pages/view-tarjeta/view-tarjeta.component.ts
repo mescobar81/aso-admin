@@ -13,7 +13,7 @@ import { Usuario } from 'src/app/auth/interfaces/login.interfaces';
 export class ViewTarjetaComponent {
 
 
-  displayedColumns: string[] = ['name', 'accion'];
+  displayedColumns: string[] = ['name'];
   ELEMENT_DATA:any[] = [];
   showSpinner:boolean = true;
   dataSource:any = [];
@@ -33,11 +33,28 @@ export class ViewTarjetaComponent {
         this.showSpinner = false;
         this.dataSource = [...data.tarjetas];
       }else{
-        Swal.fire({
+        /* Swal.fire({
           icon:'error',
           title:'Catastro Tarjeta',
-          text: data.mensaje,
+          text: 'No tienes tarjeta aún. Quieres agregar una?',
           confirmButtonText:'Aceptar'
+        });
+        this.showSpinner = false; */
+        Swal.fire({
+          title: '¡En caso de que tenga deudas pendientes por sobregiro, autorizo suficientemente a la Aso a descontar de mi cuenta el importe total hasta la regularización de la misma!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '¡Si, quiero!',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.showSpinner = false;
+            this.route.navigateByUrl('/menu/agregar-tarjeta');
+          }else{
+            this.route.navigateByUrl('/menu');
+          }
         });
       }
     }, (err) => {
